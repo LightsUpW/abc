@@ -1,0 +1,65 @@
+# 创建文件夹作为版本库
+mkdir abc
+# 进入版本库文件夹
+cd abc 
+# 初始化为git库
+git init 
+# 创建文件并写入
+touch readme.txt
+vim readme.txt 
+# 文件保存及提交 
+git add readme.txt
+git commit -m "add 3 files"
+
+# 查看git状态
+git status
+# 查看修改部分
+git diff HEAD -- readme.txt
+# 查看版本修改记录 
+git log 
+git log --pretty=oneline --abbrev-commit
+# 主库-版本回退到上2或100个版本
+git reset --hard HEAD^^
+git reset --hard HEAD~100
+# 主库-版本回退之后想撤销回退  寻找当时的版本id,再进行回退
+git reflog
+git reset --hard f765d9e73d6d43b114b0f3b082754b518c5761ca
+# 工作区-撤销修改 到最近一次add或commit
+git checkout -- readme.txt
+# 暂存区-撤销修改
+git reset HEAD readme.txt
+###   工作区删除文件
+# 提交删除
+git rm readme.txt
+git commit -m "remove readme.txt"
+# 恢复到工作区
+git chekout -- readme.txt
+
+###   连接到远程仓库
+# 设置SSH Key 
+ssh-keygen -t rsa -C "youremail@example.com"
+# 添加远程仓库  简称+url
+git remote add origin git@github.com:LightsUpW/abc.git
+# 第一次推送本地库到远程库  关联master分支
+git push -u origin master
+git push origin master
+# 从远程库克隆
+git clone git@github.com:LightsUpW/abc.git
+
+
+
+# 创建并切换到分支
+git branch dev
+git checkout dev           git switch master
+# 等价于
+git checkout -b dev        git switch -c dev
+# 查看分支
+git branch
+# 分支合并到master，之后分支将不存在
+git merge dev
+
+
+# 抓取到本地
+git fetch origin 
+
+
