@@ -40,11 +40,21 @@ git chekout -- readme.txt
 ssh-keygen -t rsa -C "youremail@example.com"
 # 添加远程仓库  简称+url
 git remote add origin git@github.com:LightsUpW/abc.git
+# 查看远程库
+git remote 
+git remote -v
 # 第一次推送本地库到远程库  关联master分支
 git push -u origin master
 git push origin master
-# 从远程库克隆
+# 从远程库克隆  但是只能看到master分支
 git clone git@github.com:LightsUpW/abc.git
+# 将远程的dev分支创建到本地
+git checkout -b dev origin/dev
+# 把最新的文件抓取到本地  分支时需要制定链接关系
+git branch --set-upstream-to=origin/dev dev
+git pull 
+
+
 
 
 
@@ -55,11 +65,19 @@ git checkout dev           git switch master
 git checkout -b dev        git switch -c dev
 # 查看分支
 git branch
-# 分支合并到master，之后分支将不存在
+# 查看分支合并图
+git log --graph
+# 分支进行合并 与master
 git merge dev
+# 禁用fast forward合并
+git merge --no-ff -m "merge with no-ff" dev
+# 删除分支  -D 强行删除未合并分支
+git branch -d dev
+
+# 变基
+git rebase
 
 
-# 抓取到本地
-git fetch origin 
+
 
 
